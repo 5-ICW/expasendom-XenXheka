@@ -21,18 +21,22 @@ const users = [
 ];
 
 // hieronder komt jullie code - veel succes
-const name = document.getElementById("name");
-const userinput = getElementById("name");
+const name = document.querySelector("#name");
 const email = document.getElementById("email");
-const filterTxt = document.getElementById("username");
+let filterTxt = document.getElementById("username");
+const filterTxt2 = document.getElementById("username2");
+const filterTxtEmail = document.querySelector("#email");
 const password = document.getElementById("password");
 const regristreerBtn = document.getElementById("registreer");
 const user2 = document.getElementById("username");
 const user2Email = document.getElementById("email");
-const filterBtn = document.getElementById("filterForm");
+const filterBtn = document.querySelector("#filterForm");
+const filterInput = document.querySelector("#filter");
 console.log(users);
 
 filterTxt.innerHTML = "";
+filterTxt2.innerHTML = "";
+filterTxtEmail.innerHTML = "";
 regristreerBtn.onclick = function () {
   const newUser = {
     fullname: name.value,
@@ -40,15 +44,15 @@ regristreerBtn.onclick = function () {
     password: password.value,
   };
   users.push(newUser);
-  console.log(newUser);
+  console.log(users);
+  filterTxt.textContent = users;
 };
 
-filterBtn.addEventListener("click", (e) => {
+filterBtn.onclick = function () {
   const filtered = users.filter((user) =>
-    user.fullname
-      .toLocaleLowerCase()
-      .includes(filterTxt.value.toLocaleLowerCase())
+    user.fullname.toLocaleLowerCase().includes(filterInput.value)
   );
   console.log(filtered);
-  filterTxt.append(filtered);
-});
+  filterTxt.textContent = filtered;
+  console.log(filtered);
+};
